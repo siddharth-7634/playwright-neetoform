@@ -27,6 +27,7 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'https://neeto-form-web-playwright.neetodeployapp.com/login',
+    testIdAttribute:'data-cy',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
@@ -35,9 +36,23 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
+      name: 'login',
       use: { ...devices['Desktop Chrome'] },
+      testMatch: "**/login.setup.ts"
     },
+    // {
+    //   name : 'teardown',
+    //   use: { ...devices['Desktop Chrome'] },
+    //   testMatch : "**/teardown.setup.ts"
+    // },
+    // {
+    //   name : "Logged in test",
+    //   use: { ...devices['Desktop Chrome'] },
+    //   dependencies : ['login'],
+    //   // teardown : 'teardown',
+    //   testMatch : '**/*spec.ts'
+
+    // },
 
     // {
     //   name: 'firefox',
